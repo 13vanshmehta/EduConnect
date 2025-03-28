@@ -146,8 +146,8 @@ const ProfileCard = () => {
           <User className="text-purple-600 dark:text-white" size={40} />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-gray-800 dark:text-white">John Doe</h3>
-          <p className="text-md text-gray-600 dark:text-gray-300">Computer Science</p>
+          <h3 className="text-lg font-bold text-gray-800 dark:text-white">KAVISH SHAH</h3>
+          <p className="text-md text-gray-600 dark:text-gray-300">LINEAR DEPRESSION</p>
         </div>
         <ArrowUpRight className="ml-auto text-purple-600 dark:text-white" size={28} />
       </div>
