@@ -35,7 +35,7 @@ const AIAttendanceCapture = ({ onAttendanceCaptured }) => {
       const formData = new FormData();
       formData.append('image_data', imageFile);
 
-      const response = await fetch('http://localhost:8000/upload-photo/', {
+      const response = await fetch('http://127.0.0.1:8000/upload-photo/', {
         method: 'POST',
         body: formData,
         // Don't set Content-Type header - browser will set it automatically for FormData
@@ -74,7 +74,7 @@ const AIAttendanceCapture = ({ onAttendanceCaptured }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 h-full">
+    <div className="bg-white shadow-lg rounded-lg p-6 h-full pt-8">
       <div className="flex items-center justify-center mb-4">
         <CameraIcon className="w-16 h-16 text-purple-600" />
       </div>
@@ -234,7 +234,7 @@ const TeacherDashboard = () => {
   };
 
   return (
-    <div className="p-6 pb-20 space-y-6 min-h-screen bg-gradient-to-br from-purple-50 to-purple-100">
+    <div className="p-6 pb-20 space-y-6 min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 pt-18">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
         Teacher Dashboard - <span className="text-purple-600">{selectedClass}</span>
       </h1>
