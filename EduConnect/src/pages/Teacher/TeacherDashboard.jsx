@@ -7,6 +7,7 @@ import {
   UsersIcon,
   SettingsIcon,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // AI Attendance Capture Component
 const AIAttendanceCapture = ({ onAttendanceCaptured }) => {
@@ -115,17 +116,20 @@ const AIAttendanceCapture = ({ onAttendanceCaptured }) => {
 
 // Bottom Navigation Component
 const BottomNavigation = ({ onNavigate }) => {
+    const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
 
   const navItems = [
-    { icon: HomeIcon, label: 'Home', value: 'home' },
-    { icon: UsersIcon, label: 'Students', value: 'students' },
-    { icon: SettingsIcon, label: 'Settings', value: 'settings' }
+    { icon: HomeIcon, label: 'Home', value: 'home', path: '/teacher/dashboard'},
+    { icon: UsersIcon, label: 'Students', value: 'students', path: '/teacher/students'},
+    // { icon: CameraIcon, label: 'Attendance', value: 'attendance', path: '/teacher/attendance'},
+    { icon: SettingsIcon, label: 'Settings', value: 'settings', path: '/teacher/settings'},
   ];
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-    onNavigate(tab);
+  const handleTabClick = (item) => {
+    setActiveTab(item.value);
+    navigate(item.path);
+    onNavigate(item.value);
   };
 
   return (
@@ -134,7 +138,7 @@ const BottomNavigation = ({ onNavigate }) => {
         {navItems.map((item) => (
           <button
             key={item.value}
-            onClick={() => handleTabClick(item.value)}
+            onClick={() => handleTabClick(item)}
             className={`flex flex-col items-center justify-center p-3 ${
               activeTab === item.value 
                 ? 'text-purple-600 bg-purple-50' 

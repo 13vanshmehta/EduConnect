@@ -8,6 +8,8 @@ import Footer from './components/Footer'
 
 import Dashboard from './pages/Student/StudentDasboard'
 import TeacherDashboard from './pages/Teacher/TeacherDashboard'
+import StudentsAttendance from './pages/Teacher/StudentAttendance'
+
 const App = () => {
   return (
     <>
@@ -21,6 +23,8 @@ const App = () => {
           {/* APP SIDE ROUTERS */}
           <Route path="/student/dashboard" element={<Dashboard />} />
           <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+          <Route path="/teacher/students" element={<StudentsAttendance />} />
+          {/* Add more routes as needed */}
         </Routes>
         <Footer/>
       </Router>
