@@ -1,0 +1,12 @@
+Name,RollNo,MotherName,FatherName,Email,Password,PhoneNumber,Class,Image,Remark,IsPresent
+Abhijeet,6409,Mrs. AbhijeetM,Mr. AbhijeetF,abhijeet@example.com,a1e7bcc1,9136625777,SE,,,
+Kavish,1719,Mrs. KavishM,Mr. KavishF,kavish@example.com,3ee026b8,8850815715,SE,,,
+Komal,1821,Mrs. KomalM,Mr. KomalF,komal@example.com,3ee026b8,9420582836,SE,,,
+Krishna,1625,Mrs. KrishnaM,Mr. KrishnaF,krishna@example.com,e0c295b1,7973913762,SE,,,
+Naman,3026,Mrs. NamanM,Mr. NamanF,naman@example.com,a1e7bcc2,8424382602,SE,,,
+Parth,9929,Mrs. ParthM,Mr. ParthF,parth@example.com,3ee026b9,9983789927,SE,,,
+Rishabh,5909,Mrs. RishabhM,Mr. RishabhF,rishabh@example.com,e0c295b2,7955175944,SE,,,
+Sohan,4246,Mrs. SohanM,Mr. SohanF,sohan@example.com,a1e7bcc3,9737748705,SE,,,
+Vansh,4699,Mrs. VanshM,Mr. VanshF,vansh@example.com,3ee026b10,7977101454,SE,,,
+Varun,1841,Mrs. VarunM,Mr. VarunF,varun@example.com,e0c295b3,9130152893,SE,,,
+Yash,5291,Mrs. YashM,Mr. YashF,yash@example.com,a1e7bcc4,7862504975,SE,,,

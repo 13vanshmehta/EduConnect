@@ -9,6 +9,7 @@ import math
 from datetime import datetime
 import logging
 from typing import List
+import httpx
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -17,7 +18,7 @@ logger = logging.getLogger(__name__)
 # MongoDB Connection
 try:
     MONGO_DB_URL = os.environ.get(
-        "MONGO_DB_URL", 
+        "MONGO_DB_URL",
         "mongodb+srv://mehtavansh13042005:u7Tv8ENi22n0mK7W@techverse.ntbynet.mongodb.net/?retryWrites=true&w=majority&appName=TechVerse"
     )
     client = MongoClient(MONGO_DB_URL)
@@ -75,10 +76,12 @@ def get_attendance():
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 ALLOWED_CONTENT_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"]
 
+FETCH_PHOTOS_URL = "http://192.168.1.177:8000/fetch-classroom-photos"
+
 @app.post("/upload-photo/")
 async def upload_photo(image_data: UploadFile = File(...)):
     """
-    Endpoint to upload and store a photo in MongoDB
+    Endpoint to upload and store a photo in MongoDB.
     """
     try:
         if image_data.content_type not in ALLOWED_CONTENT_TYPES:
@@ -93,7 +96,7 @@ async def upload_photo(image_data: UploadFile = File(...)):
                 status_code=413, 
                 detail=f"File too large. Maximum size is {MAX_FILE_SIZE / (1024 * 1024)} MB"
             )
-        
+
         encoded_photo = base64.b64encode(photo_bytes).decode("utf-8")
         photo_doc = {
             "filename": image_data.filename,
@@ -103,8 +106,17 @@ async def upload_photo(image_data: UploadFile = File(...)):
             "file_size": len(photo_bytes)
         }
         result = photos_collection.insert_one(photo_doc)
-        
+
         logger.info(f"Photo uploaded successfully: {image_data.filename}")
+
+        # Trigger the external API after successful upload
+        try:
+            async with httpx.AsyncClient() as client:
+                response = await client.get("http://192.168.1.177:8000/fetch-classroom-photos")
+                logger.info(f"Fetch Classroom Photos API Response: {response.status_code}, {response.text}")
+        except Exception as fetch_err:
+            logger.error(f"Failed to call Fetch Classroom Photos API: {fetch_err}")
+
         return JSONResponse(
             status_code=200,
             content={
@@ -113,6 +125,7 @@ async def upload_photo(image_data: UploadFile = File(...)):
                 "filename": image_data.filename
             }
         )
+
     except HTTPException as http_err:
         logger.error(f"HTTP Error: {http_err.detail}")
         raise
